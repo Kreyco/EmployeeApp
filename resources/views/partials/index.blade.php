@@ -31,6 +31,7 @@
             <td>{{ $employee->email }}</td>
             <td>{{ $employee->gender }}</td>
             <td>{{ $employee->bulletin ? 'Sí' : 'No' }}</td>
+            <td></td>
         </tr>
         @endforeach
         </tbody>

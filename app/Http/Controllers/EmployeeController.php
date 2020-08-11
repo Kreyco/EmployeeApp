@@ -40,7 +40,7 @@ class EmployeeController extends Controller
         $employee = Employee::create($request->all());
         $employees = Employee::all();
 
-        return view('partials.index', ['employees' => $employees]);
+        return redirect()->route('employees.index', ['employees' => $employees]);
     }
 
     /**
