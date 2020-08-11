@@ -10,13 +10,13 @@ class EmployeeController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index()
     {
-        //
+        $employees = Employee::all();
 
-        return view('partials.index');
+        return view('partials.index', ['employees' => $employees]);
     }
 
     /**
@@ -26,7 +26,7 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        //
+        return view('partials.create');
     }
 
     /**
@@ -37,7 +37,10 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $employee = Employee::create($request->all());
+        $employees = Employee::all();
+
+        return view('partials.index', ['employees' => $employees]);
     }
 
     /**

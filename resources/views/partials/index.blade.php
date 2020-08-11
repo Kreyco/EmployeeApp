@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="row">
         <div class="col-sm-10">
             <h1>{{ __('employees.title.index') }}</h1>
         </div>
         <div class="col-sm-2">
-            <a class="btn btn-primary btn-lg" href="{{ route('employees.create') }}" role="button">{{ __('employees.label.add_new') }}</a>
+            <a class="btn btn-primary btn-lg" href="{{ route('employees.create') }}"
+               role="button">{{ __('employees.label.add_new') }}</a>
         </div>
     </div>
 
@@ -24,12 +24,15 @@
         </tr>
         </thead>
         <tbody>
+        @foreach($employees as $employee)
         <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
+            <th scope="row">{{ $employee->id }}</th>
+            <td>{{ $employee->name }}</td>
+            <td>{{ $employee->email }}</td>
+            <td>{{ $employee->gender }}</td>
+            <td>{{ $employee->bulletin ? 'Sí' : 'No' }}</td>
         </tr>
+        @endforeach
         </tbody>
     </table>
 @endsection
