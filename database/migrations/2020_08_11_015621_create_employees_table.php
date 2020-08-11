@@ -18,7 +18,6 @@ class CreateEmployeesTable extends Migration
             $table->string('name', 255);
             $table->string('email', 255);
             $table->enum('gender', ['M', 'F']);
-            $table->unsignedBigInteger('area_id');
             $table->unsignedBigInteger('bulletin');
             $table->text('notes');
             $table->timestamps();

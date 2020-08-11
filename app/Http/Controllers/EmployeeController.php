@@ -14,6 +14,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+//        $employees = Employee::all()->with(['Area']);
         $employees = Employee::all();
 
         return view('partials.index', ['employees' => $employees]);
@@ -22,7 +23,7 @@ class EmployeeController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
@@ -33,14 +34,33 @@ class EmployeeController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(Request $request)
     {
-        $employee = Employee::create($request->all());
-        $employees = Employee::all();
+        /** @var $employee Employee **/
+        $validatedData = $request->validate([
+            'name' => ['required' , 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'gender' => ['required'],
+            'area_id' => ['required'],
+            'notes' => ['required']
+        ]);
 
-        return redirect()->route('employees.index', ['employees' => $employees]);
+        if ($validatedData)
+        {
+            $employee = Employee::create($request->all());
+
+            if ($request->roles)
+            {
+                $employee->roles()->sync($request->roles);
+            }
+        }
+
+        $request->session()->flash('status', trans('employees.title.created_succesfully'));
+
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -62,7 +82,7 @@ class EmployeeController extends Controller
      */
     public function edit(Employee $employee)
     {
-        //
+        return view('partials.edit', ['employee' => $employee]);
     }
 
     /**
@@ -74,7 +94,37 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, Employee $employee)
     {
-        //
+        /** @var $employee Employee **/
+        $validatedData = $request->validate([
+            'name' => ['required' , 'max:255'],
+            'email' => ['required', 'email', 'max:255'],
+            'gender' => ['required'],
+            'area_id' => ['required'],
+            'notes' => ['required']
+        ]);
+
+        if ($validatedData)
+        {
+            $employee = Employee::find($employee->id);
+
+            if (is_null($employee))
+            {
+                $request->session()->flash('status', trans('employees.title.does_not_exist'));
+
+                return redirect()->route('employees.index');
+            }
+
+            $employee->update($request->all());
+
+            if ($request->roles)
+            {
+                $employee->roles()->sync($request->roles);
+            }
+        }
+
+        $request->session()->flash('status', trans('employees.title.edited_succesfully'));
+
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -83,8 +133,18 @@ class EmployeeController extends Controller
      * @param  \App\Employee  $employee
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(Request $request, Employee $employee)
     {
-        //
+        if (is_null($employee)){
+            $request->session()->flash('status', trans('employees.title.does_not_exist'));
+
+            return redirect()->route('employees.index');
+        }
+
+        $employee->delete();
+
+        $request->session()->flash('status', trans('employees.title.deleted_succesfully'));
+
+        return redirect()->route('employees.index');
     }
 }

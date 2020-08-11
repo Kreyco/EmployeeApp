@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'EmployeeController@index');
+Route::get('/', 'EmployeeController@index')->name('home');
 
 Route::resource('employees', 'EmployeeController');

@@ -1,0 +1,11 @@
+.form-group {
+    label.is-invalid, {
+        color: $red;
+    }
+
+    .form-control {
+        &.is-invalid {
+            border-color: $red;
+        }
+    }
+}

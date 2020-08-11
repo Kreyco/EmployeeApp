@@ -14,6 +14,9 @@ return [
         'female'     => 'Femenino',
         'professional_develop'     => 'Profesional de proyectos - Desarrollador',
         'save'     => 'Guardar',
+        'back'     => 'Atras',
+        'area'     => 'Area',
+        'strategic_manager'     => 'Gerente estratégico',
     ],
     'help'  => [
         'email' => 'Correo electrónico',
@@ -27,6 +30,10 @@ return [
         'gender'     => 'Sexo',
         'department' => 'Area',
         'bulletin'   => 'Boletín',
-        'actions'    => 'Acciones'
+        'actions'    => 'Acciones',
+        'created_succesfully' => 'Empleado creado correctamente',
+        'edited_succesfully' => 'Empleado editado correctamente',
+        'does_not_exist' => 'Empleado no existe',
+        'deleted_succesfully' => 'Empleado eliminado correctamente',
     ]
 ];

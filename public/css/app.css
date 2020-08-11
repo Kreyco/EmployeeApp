@@ -10904,3 +10904,11 @@ a.text-dark:focus {
   }
 }
 
+.form-group label.is-invalid {
+  color: #e3342f;
+}
+
+.form-group .form-control.is-invalid {
+  border-color: #e3342f;
+}
+
