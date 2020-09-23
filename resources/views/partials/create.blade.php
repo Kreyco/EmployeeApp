@@ -18,7 +18,7 @@
                        placeholder="{{ __('employees.help.name') }}">
 
                 @error('name')
-                    <span class="invalid-feedback" role="alert">
+                <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
@@ -41,7 +41,8 @@
         </div>
         <fieldset class="form-group">
             <div class="row">
-                <legend class="col-form-label col-sm-2 pt-0 @error('gender') is-invalid @enderror">{{ __('employees.label.gender') }}</legend>
+                <legend
+                    class="col-form-label col-sm-2 pt-0 @error('gender') is-invalid @enderror">{{ __('employees.label.gender') }}</legend>
                 <div class="col-sm-10">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" id="gender1"
@@ -59,7 +60,7 @@
                     </div>
 
                     @error('gender')
-                        <span class="invalid-feedback" role="alert">
+                    <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                         </span>
                     @enderror
@@ -71,8 +72,9 @@
                    for="area_id">{{ __('employees.label.area') }}</label>
             <div class="col-sm-10">
                 <select class="form-control" id="area_id" name="area_id">
-                    <option value="1">Administración</option>
-                    <option value="2">Recursos humanos</option>
+                    @foreach($areas as $area)
+                        <option value="{{ $area->id  }}">{{ $area->name }}</option>
+                    @endforeach
                 </select>
 
                 @error('area_id')
@@ -84,7 +86,9 @@
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label @error('notes') is-invalid @enderror"
-                   for="notes">{{ __('employees.label.notes') }}</label>
+                   for="notes">
+                {{ __('employees.label.notes') }}
+            </label>
             <div class="col-sm-10">
                 <textarea class="form-control @error('notes') is-invalid @enderror" id="notes" rows="3" name="notes"
                           placeholder="{{ __('employees.help.notes') }}"></textarea>
@@ -97,28 +101,25 @@
             </div>
         </div>
         <div class="form-group row">
-            <div class="col-sm-3"></div>
-            <div class="col-sm-1">
+            <div class="col-sm-2 col-form-label"></div>
+            <div class="col-sm-10">
                 <input class="form-check-input" type="checkbox" id="bulletin" name="bulletin" value="1" checked>
+                <label class="col-sm-2 col-form-label form-check-label" for="bulletin">
+                    {{ __('employees.label.bulletin') }}
+                </label>
             </div>
-            <label class="col-sm-8 col-form-label" for="bulletin"
-                   class="form-check-label">{{ __('employees.label.bulletin') }}</label>
         </div>
         <div class="form-group row">
             <div class="col-sm-2 @error('roles') is-invalid @enderror">{{ __('employees.label.roles') }}</div>
             <div class="col-sm-10">
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="roles1" name="roles" value="1">
-                    <label class="form-check-label" for="roles1">
-                        {{ __('employees.label.professional_develop') }}
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="checkbox" id="roles1" name="roles" value="2">
-                    <label class="form-check-label" for="roles1">
-                        {{ __('employees.label.strategic_manager') }}
-                    </label>
-                </div>
+                @foreach($roles as $key => $role)
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="roles{{ $key }}" name="roles" value="{{ $role->id }}">
+                        <label class="form-check-label" for="roles{{ $key }}">
+                            {{ $role->name }}
+                        </label>
+                    </div>
+                @endforeach
 
                 @error('roles')
                 <span class="invalid-feedback" role="alert">
@@ -129,7 +130,9 @@
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-                <button type="submit" class="btn btn-primary">{{ __('employees.label.save') }}</button>
+                <button type="submit" class="btn btn-primary">
+                    {{ __('employees.label.save') }}
+                </button>
                 <a class="btn btn-secondary" href="{{ route('home') }}" role="button">
                     {{ __('employees.label.back') }}
                 </a>

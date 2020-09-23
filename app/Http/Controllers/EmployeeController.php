@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Employee;
+use App\Area;
+use App\Role;
 use Illuminate\Http\Request;
 
 class EmployeeController extends Controller
@@ -27,7 +29,10 @@ class EmployeeController extends Controller
      */
     public function create()
     {
-        return view('partials.create');
+        $areas = Area::all();
+        $roles = Role::all();
+
+        return view('partials.create', compact('areas', 'roles'));
     }
 
     /**
@@ -78,11 +83,16 @@ class EmployeeController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Employee  $employee
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Employee $employee)
     {
-        return view('partials.edit', ['employee' => $employee]);
+        $areas = Area::all();
+        $roles = Role::all();
+
+//        return view('partials.edit', ['employee' => $employee]);
+        return view('partials.edit', compact('employee', 'areas', 'roles'));
     }
 
     /**
@@ -90,7 +100,8 @@ class EmployeeController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Employee  $employee
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(Request $request, Employee $employee)
     {
@@ -131,7 +142,8 @@ class EmployeeController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Employee  $employee
-     * @return \Illuminate\Http\Response
+     *
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(Request $request, Employee $employee)
     {
