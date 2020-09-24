@@ -1,4 +1,5 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Nunito);
 
 /*!
  * Bootstrap v4.5.2 (https://getbootstrap.com/)
@@ -2160,11 +2161,6 @@ pre code {
 }
 
 .form-control:-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
-.form-control::-ms-input-placeholder {
   color: #6c757d;
   opacity: 1;
 }
@@ -10904,11 +10900,13 @@ a.text-dark:focus {
   }
 }
 
-.form-group label.is-invalid {
+.form-group label.is-invalid,
+.form-group label.error {
   color: #e3342f;
 }
 
-.form-group .form-control.is-invalid {
+.form-group .form-control.is-invalid,
+.form-group .form-control.error {
   border-color: #e3342f;
 }
 

@@ -91,7 +91,6 @@ class EmployeeController extends Controller
         $areas = Area::all();
         $roles = Role::all();
 
-//        return view('partials.edit', ['employee' => $employee]);
         return view('partials.edit', compact('employee', 'areas', 'roles'));
     }
 

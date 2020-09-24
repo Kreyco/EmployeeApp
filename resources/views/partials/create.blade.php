@@ -7,7 +7,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('employees.store') }}">
+    <form id="create-form" method="POST" action="{{ route('employees.store') }}">
         @csrf
         <div class="form-group row">
             <label class="col-sm-2 col-form-label @error('name') is-invalid @enderror"
@@ -26,7 +26,7 @@
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label @error('email') is-invalid @enderror"
-                   for="exampleFormControlInput1">{{ __('employees.label.email') }}</label>
+                   for="email">{{ __('employees.label.email') }}</label>
             <div class="col-sm-10">
                 <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                        value="{{ old('email') }}" required autocomplete="email" id="email"
@@ -47,14 +47,14 @@
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" id="gender1"
                                value="M">
-                        <label class="form-check-label" for="genderRadio1">
+                        <label class="form-check-label" for="gender1">
                             {{ __('employees.label.male') }}
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" id="gender2"
                                value="F">
-                        <label class="form-check-label" for="genderRadio2">
+                        <label class="form-check-label" for="gender2">
                             {{ __('employees.label.female') }}
                         </label>
                     </div>
@@ -114,7 +114,8 @@
             <div class="col-sm-10">
                 @foreach($roles as $key => $role)
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="roles{{ $key }}" name="roles" value="{{ $role->id }}">
+                        <input class="form-check-input" type="checkbox" id="roles{{ $key }}" name="roles"
+                               value="{{ $role->id }}">
                         <label class="form-check-label" for="roles{{ $key }}">
                             {{ $role->name }}
                         </label>
@@ -139,4 +140,10 @@
             </div>
         </div>
     </form>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#employee-form").validate();
+        });
+    </script>
 @endsection

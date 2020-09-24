@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -21,22 +21,20 @@
 </head>
 <body>
 <div class="container-fluid">
-    <div class="jumbotron">
-        <h1 class="display-4">{{ config('app.name', 'Laraveld') }}</h1>
+    <div class="head">
+        @include('layouts.navbar')
     </div>
 
-    @if (session('status'))
-        <div class="alert alert-success" role="alert">
-            {{ session('status') }}
-        </div>
-    @endif
+    <div class="content">
+        @if (session('status'))
+            <div class="alert alert-success" role="alert">
+                {{ session('status') }}
+            </div>
+        @endif
 
 
-    @yield('content')
-
+        @yield('content')
+    </div>
 </div>
-<script>
-    window.user = @json(auth()->user());
-</script>
 </body>
 </html>

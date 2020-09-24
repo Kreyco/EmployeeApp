@@ -7,7 +7,7 @@
         </div>
     @endif
 
-    <form method="POST" action="{{ route('employees.update', [$employee]) }}">
+    <form id="employee-form" method="POST" action="{{ route('employees.update', [$employee]) }}">
         @csrf
         @method('PUT')
 
@@ -28,7 +28,7 @@
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label @error('email') is-invalid @enderror"
-                   for="exampleFormControlInput1">{{ __('employees.label.email') }}</label>
+                   for="email">{{ __('employees.label.email') }}</label>
             <div class="col-sm-10">
                 <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                        value="{{ $employee->email  }}" required autocomplete="email" id="email"
@@ -48,15 +48,15 @@
                 <div class="col-sm-10">
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" id="gender1"
-                               value="M" {{ ($employee->gender == "M")? "checked" : "" }}>
-                        <label class="form-check-label" for="genderRadio1">
+                               value="M" {{ ($employee->gender === "M")? "checked" : "" }}>
+                        <label class="form-check-label" for="gender">
                             {{ __('employees.label.male') }}
                         </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="gender" id="gender2"
-                               value="F" {{ ($employee->gender == "F")? "checked" : "" }}>
-                        <label class="form-check-label" for="genderRadio2">
+                               value="F" {{ ($employee->gender === "F")? "checked" : "" }}>
+                        <label class="form-check-label" for="gender">
                             {{ __('employees.label.female') }}
                         </label>
                     </div>
@@ -143,4 +143,10 @@
             </div>
         </div>
     </form>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#employee-form").validate();
+        });
+    </script>
 @endsection
