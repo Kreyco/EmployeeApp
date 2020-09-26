@@ -93,7 +93,7 @@
             <div class="col-sm-10">
                 <textarea class="form-control @error('notes') is-invalid @enderror" id="notes" rows="3" name="notes"
                           placeholder="{{ __('employees.help.notes') }}">
-                    {{ $employee->notes  }}
+                {{ old('notes') ?? $employee->notes }}
                 </textarea>
 
                 @error('notes')

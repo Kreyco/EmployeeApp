@@ -16,10 +16,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-//        $employees = Employee::all()->with(['Area']);
         $employees = Employee::all();
 
-        return view('partials.index', ['employees' => $employees]);
+        return view('employees.index', ['employees' => $employees]);
     }
 
     /**
@@ -32,7 +31,7 @@ class EmployeeController extends Controller
         $areas = Area::all();
         $roles = Role::all();
 
-        return view('partials.create', compact('areas', 'roles'));
+        return view('employees.create', compact('areas', 'roles'));
     }
 
     /**
@@ -91,7 +90,7 @@ class EmployeeController extends Controller
         $areas = Area::all();
         $roles = Role::all();
 
-        return view('partials.edit', compact('employee', 'areas', 'roles'));
+        return view('employees.edit', compact('employee', 'areas', 'roles'));
     }
 
     /**

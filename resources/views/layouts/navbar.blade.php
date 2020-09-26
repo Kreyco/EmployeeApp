@@ -17,8 +17,8 @@
                     </span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    {{ __('Areas') }}
+                <a class="nav-link" href="/areas">
+                    {{ __('areas.title.nav_bar') }}
                 </a>
             </li>
             <li class="nav-item">

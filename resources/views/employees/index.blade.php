@@ -43,9 +43,9 @@
                                   d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                         </svg>
                     </a>
-                    <a class="btn btn-danger btn-sm" href="{{ route('employees.destroy', [$employee]) }}"
+                    <a class="btn btn-danger btn-sm" href="#"
                        role="button" onclick="event.preventDefault();
-                                                     document.getElementById('delete-form').submit();">
+                        document.getElementById('delete-employee-{{ $employee->id }}-form').submit();">
                         <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-trash-fill" fill="currentColor"
                              xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd"
@@ -53,7 +53,10 @@
                         </svg>
                     </a>
 
-                    <form method="POST" id="delete-form" action="{{ route('employees.destroy', [$employee]) }}">
+                    <form method="POST" id="delete-employee-{{ $employee->id }}-form"
+                          action="{{ route('employees.destroy', [$employee]) }}"
+                          class="hidden"
+                    >
                         @csrf
                         @method('DELETE')
                     </form>
