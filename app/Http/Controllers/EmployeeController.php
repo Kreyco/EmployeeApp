@@ -91,8 +91,10 @@ class EmployeeController extends Controller
         $areas = Area::all();
         $roles = Role::all();
         $genders = ['M' => trans('employees.label.male'), 'F' => trans('employees.label.female')];
+        $rolesEmployee = $employee->roles->toArray();
+        $rolesEmployee = $employee->roles()->pluck('roles.id')->toArray();
 
-        return view('employees.edit', compact('employee', 'areas', 'roles', 'genders'));
+        return view('employees.edit', compact('employee', 'areas', 'roles', 'genders', 'rolesEmployee'));
     }
 
     /**

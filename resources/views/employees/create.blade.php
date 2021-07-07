@@ -13,7 +13,7 @@
 
     <form id="create-form" method="POST" action="{{ route('employees.store') }}">
         @csrf
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <label class="col-sm-2 col-form-label @error('name') is-invalid @enderror"
                    for="name">{{ __('employees.label.name') }}</label>
             <div class="col-sm-10">
@@ -99,13 +99,14 @@
                 @enderror
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-sm-2 col-form-label"></div>
-            <div class="col-sm-10">
-                <input class="form-check-input" type="checkbox" id="bulletin" name="bulletin" value="1" checked>
-                <label class="col-sm-2 col-form-label form-check-label" for="bulletin">
-                    {{ __('employees.label.bulletin') }}
-                </label>
+        <div class="row mb-3">
+            <div class="col-sm-10 offset-sm-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="bulletin" name="bulletin" value="1" checked>
+                    <label class="form-check-label col-sm-2 col-form-label pt-0" for="bulletin">
+                        {{ __('employees.label.bulletin') }}
+                    </label>
+                </div>
             </div>
         </div>
         <div class="form-group row">

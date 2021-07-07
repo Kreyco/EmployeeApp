@@ -7,11 +7,15 @@
         </div>
     @endif
 
+    <div class="alert alert-primary" role="alert">
+        {{ __('employees.title.required_message') }}
+    </div>
+
     <form id="employee-form" method="POST" action="{{ route('employees.update', [$employee]) }}">
         @csrf
         @method('PUT')
 
-        <div class="form-group row">
+        <div class="form-group row mb-3">
             <label class="col-sm-2 col-form-label @error('name') is-invalid @enderror"
                    for="name">{{ __('employees.label.name') }}</label>
             <div class="col-sm-10">
@@ -46,20 +50,15 @@
                 <legend
                     class="col-form-label col-sm-2 pt-0 @error('gender') is-invalid @enderror">{{ __('employees.label.gender') }}</legend>
                 <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gender1"
-                               value="M" {{ ($employee->gender === "M")? "checked" : "" }}>
-                        <label class="form-check-label" for="gender">
-                            {{ __('employees.label.male') }}
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gender2"
-                               value="F" {{ ($employee->gender === "F")? "checked" : "" }}>
-                        <label class="form-check-label" for="gender">
-                            {{ __('employees.label.female') }}
-                        </label>
-                    </div>
+                    @foreach($genders as $value => $gender)
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender"
+                                   value="{{ $value }}" {{ ($employee->gender === $value)? "checked" : "" }}>
+                            <label class="form-check-label" for="gender">
+                                {{ $gender }}
+                            </label>
+                        </div>
+                    @endforeach
 
                     @error('gender')
                     <span class="invalid-feedback" role="alert">
@@ -103,24 +102,24 @@
                 @enderror
             </div>
         </div>
-        <div class="form-group row">
-            <div class="col-sm-2 col-form-label"></div>
-            <div class="col-sm-10">
-                <input class="form-check-input" type="checkbox" id="bulletin" name="bulletin"
-                       value="1" {{ ($employee->bulletin == "1")? "checked" : "" }}>
-                <label class="col-sm-2 col-form-label form-check-label" for="bulletin">
-                    {{ __('employees.label.bulletin') }}
-                </label>
+        <div class="row mb-3">
+            <div class="col-sm-10 offset-sm-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="bulletin" name="bulletin"
+                           value="1" {{ ($employee->bulletin == "1")? "checked" : "" }}>
+                    <label class="form-check-label col-sm-2 col-form-label pt-0" for="bulletin">
+                        {{ __('employees.label.bulletin') }}
+                    </label>
+                </div>
             </div>
         </div>
         <div class="form-group row">
-
             <div class="col-sm-2 @error('roles') is-invalid @enderror">{{ __('employees.label.roles') }}</div>
             <div class="col-sm-10">
                 @foreach($roles as $key => $role)
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" id="roles{{ $key }}" name="roles"
-                               value="{{ $role->id }}" {{ in_array($role->id, $employee->roles->toArray()) ? "checked" : "" }}>
+                               value="{{ $role->id }}" {{ in_array($role->id, $rolesEmployee) ? "checked" : "" }}>
                         <label class="form-check-label" for="roles{{ $key }}">
                             {{ $role->name }}
                         </label>
