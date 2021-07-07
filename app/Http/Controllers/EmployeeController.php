@@ -30,8 +30,9 @@ class EmployeeController extends Controller
     {
         $areas = Area::all();
         $roles = Role::all();
+        $genders = ['M' => trans('employees.label.male'), 'F' => trans('employees.label.female')];
 
-        return view('employees.create', compact('areas', 'roles'));
+        return view('employees.create', compact('areas', 'roles', 'genders'));
     }
 
     /**
@@ -62,7 +63,7 @@ class EmployeeController extends Controller
             }
         }
 
-        $request->session()->flash('status', trans('employees.title.created_succesfully'));
+        $request->session()->flash('status', trans('employees.title.created_successfully'));
 
         return redirect()->route('employees.index');
     }
@@ -89,8 +90,9 @@ class EmployeeController extends Controller
     {
         $areas = Area::all();
         $roles = Role::all();
+        $genders = ['M' => trans('employees.label.male'), 'F' => trans('employees.label.female')];
 
-        return view('employees.edit', compact('employee', 'areas', 'roles'));
+        return view('employees.edit', compact('employee', 'areas', 'roles', 'genders'));
     }
 
     /**
@@ -131,7 +133,7 @@ class EmployeeController extends Controller
             }
         }
 
-        $request->session()->flash('status', trans('employees.title.edited_succesfully'));
+        $request->session()->flash('status', trans('employees.title.edited_successfully'));
 
         return redirect()->route('employees.index');
     }
@@ -153,7 +155,7 @@ class EmployeeController extends Controller
 
         $employee->delete();
 
-        $request->session()->flash('status', trans('employees.title.deleted_succesfully'));
+        $request->session()->flash('status', trans('employees.title.deleted_successfully'));
 
         return redirect()->route('employees.index');
     }

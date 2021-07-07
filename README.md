@@ -1,8 +1,8 @@
-<h3 align="center">Nexurapp</h3>
+<h3 align="center">EmployeeApp</h3>
 
-## Usar Nexurapp
+## Usar EmployeeApp
 
-Nexurapp esta desarrollado en Laravel, Php 7.4 y Mysql 8.0
+EmployeeApp esta desarrollado en Laravel 7, Php 7.4 y Mysql 8.0
 
 ## Pasos a seguir
 - Es necesario preparar la Base de datos para la aplicación
@@ -14,16 +14,16 @@ En la raíz del proyecto, en el archivo '.env' ingresar los siguientes datos:
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=nexurapp
-DB_USERNAME=root
-DB_PASSWORD=rootpassword
+DB_DATABASE=employeeapp
+DB_USERNAME=employeeapp
+DB_PASSWORD=employeeapppassword
 
 APP_LOCALE=es
 ```
 
 ### Database
 ```sql
-CREATE DATABASE nexurapp CHARACTER SET utf8 COLLATE utf8_general_ci;
+CREATE DATABASE employeeapp CHARACTER SET utf8 COLLATE utf8_general_ci;
 ```
 Si es la primer vez que se crea la base de datos:
 ```sh

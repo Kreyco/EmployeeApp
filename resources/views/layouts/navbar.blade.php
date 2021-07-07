@@ -11,26 +11,26 @@
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="/">
-                    {{ __('Home') }}
+                    {{ __('navbar.title.home') }}
                     <span class="sr-only">
                         (current)
                     </span></a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/areas">
-                    {{ __('areas.title.nav_bar') }}
+                    {{ __('navbar.title.areas') }}
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">
-                    {{ __('Roles') }}
+                    {{ __('navbar.title.roles') }}
                 </a>
             </li>
         </ul>
         <form class="form-inline my-2 my-lg-0">
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="{{ __('navbar.label.search') }}">
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                {{ __('Search') }}
+                {{ __('navbar.title.search') }}
             </button>
         </form>
     </div>

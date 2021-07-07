@@ -28,12 +28,13 @@ return [
         'name'       => 'Nombre',
         'email'      => 'E-Mail',
         'gender'     => 'Sexo',
-        'department' => 'Area',
+        'department' => 'Área',
         'bulletin'   => 'Boletín',
         'actions'    => 'Acciones',
-        'created_succesfully' => 'Empleado creado correctamente',
-        'edited_succesfully' => 'Empleado editado correctamente',
+        'created_successfully' => 'Empleado creado correctamente',
+        'edited_successfully' => 'Empleado editado correctamente',
         'does_not_exist' => 'Empleado no existe',
-        'deleted_succesfully' => 'Empleado eliminado correctamente',
+        'deleted_successfully' => 'Empleado eliminado correctamente',
+        'required_message' => 'Los campos con asterico (*) son obligatorios',
     ]
 ];

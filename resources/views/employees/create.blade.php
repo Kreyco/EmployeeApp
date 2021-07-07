@@ -7,6 +7,10 @@
         </div>
     @endif
 
+    <div class="alert alert-primary" role="alert">
+        {{ __('employees.title.required_message') }}
+    </div>
+
     <form id="create-form" method="POST" action="{{ route('employees.store') }}">
         @csrf
         <div class="form-group row">
@@ -44,20 +48,15 @@
                 <legend
                     class="col-form-label col-sm-2 pt-0 @error('gender') is-invalid @enderror">{{ __('employees.label.gender') }}</legend>
                 <div class="col-sm-10">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gender1"
-                               value="M">
-                        <label class="form-check-label" for="gender1">
-                            {{ __('employees.label.male') }}
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="gender" id="gender2"
-                               value="F">
-                        <label class="form-check-label" for="gender2">
-                            {{ __('employees.label.female') }}
-                        </label>
-                    </div>
+                    @foreach($genders as $value => $gender)
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="gender"
+                                   value="{{ $value }}">
+                            <label class="form-check-label">
+                                {{ $gender }}
+                            </label>
+                        </div>
+                    @endforeach
 
                     @error('gender')
                     <span class="invalid-feedback" role="alert">
